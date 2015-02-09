@@ -91,7 +91,17 @@ class ReCaptcha
     private function _submitHTTPGet($path, $data)
     {
         $req = $this->_encodeQS($data);
-        $response = file_get_contents($path . $req);
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $req);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+
+        $result = curl_exec($ch);
+
+        curl_close($ch);
+
         return $response;
     }
 
