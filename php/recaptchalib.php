@@ -42,8 +42,7 @@ class ReCaptchaResponse
 class ReCaptcha
 {
     private static $_signupUrl = "https://www.google.com/recaptcha/admin";
-    private static $_siteVerifyUrl =
-        "https://www.google.com/recaptcha/api/siteverify?";
+    private static $_siteVerifyUrl = "https://www.google.com/recaptcha/api/siteverify?";
     private $_secret;
     private static $_version = "php_1.0";
 
@@ -95,10 +94,12 @@ class ReCaptcha
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL, $req);
+        curl_setopt($ch, CURLOPT_URL,$path.$req);
         curl_setopt($ch, CURLOPT_HEADER, false);
 
         $result = curl_exec($ch);
+        dd(curl_getinfo($ch));
+        dd($result);
 
         curl_close($ch);
 
