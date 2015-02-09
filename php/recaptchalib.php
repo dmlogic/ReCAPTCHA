@@ -102,7 +102,7 @@ class ReCaptcha
 
         curl_close($ch);
 
-        return $response;
+        return $result;
     }
 
     /**
